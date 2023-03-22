@@ -7,16 +7,17 @@ keys to other boxes, ``canUnlockAll`` purpose is to determine
 if all the boxes can be opened
 '''
 
+
 def canUnlockAll(boxes):
-	'''
-	function to check if all boxes can be opened
-	'''
-	opened = [0]
+    '''
+    function to check if all boxes can be opened
+    '''
+    opened = [0]
 
-	for key in opened:
-		for k in boxes[key]:
-			if k < len(boxes) and k not in opened:
-				opened.append(k)
+    for key in opened:
+        for k in boxes[key]:
+            if k < len(boxes) and k not in opened:
+                opened.append(k)
 
-	return True if len(opened) == len(boxes) else False
+    return True if len(opened) == len(boxes) else False
 
