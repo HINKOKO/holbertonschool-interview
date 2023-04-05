@@ -32,3 +32,9 @@ Heap-property allows efficient access, which is useful for a variety of algorith
 
 - **Data compression:** Binary trees and heaps are also used in data compression techniques, such as LZW (Lempel–Ziv–Welch) compression, which is used in file compression programs like gzip and compress.
 
+## **Note on correct steps for insertion (in a Max Heap):** <br> 
+ - **1.** Create a new node for the value to be inserted
+ - **2.** Insert node at the next available position in bottom level (maintain complete BT property)
+ - **3.** Compare value with parent, if greater than parent, then swap it.
+ - **4.** Repeat 3 until Max-Heap property satisfied
+  ==> value of any node should be greater than or equal its childrens
