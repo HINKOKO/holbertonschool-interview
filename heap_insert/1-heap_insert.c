@@ -48,6 +48,7 @@ heap_t *swapper(heap_t **root)
 	heap_t *tmp;
 	int holder;
 
+	tmp = *root;
 	while (tmp->n > tmp->parent->n)
 	{
 		holder = tmp->parent->n;
@@ -82,4 +83,5 @@ int subtree_len(heap_t *node)
 		return (subtree_len(node->right));
 	if (node->left)
 		return (subtree_len(node->left));
+	return (0);
 }
