@@ -19,17 +19,17 @@ heap_t *heap_insert(heap_t **root, int value)
 		*root = binary_tree_node(new, value);
 		return (*root);
 	}
-	if (!new->right)
-	{
-		new->right = binary_tree_node(new, value);
-		return (swapper(&new->right));
-	}
 	if (!new->left)
 	{
 		new->left = binary_tree_node(new, value);
 		return (swapper(&new->left));
 	}
-	if (subtree_len(new->right) >= subtree_len(new->left))
+	if (!new->right)
+	{
+		new->right = binary_tree_node(new, value);
+		return (swapper(&new->right));
+	}
+	if (subtree_len(new->left) <= subtree_len(new->right))
 		return (heap_insert(&new->left, value));
 	else
 		return (heap_insert(&new->right, value));
@@ -49,7 +49,7 @@ heap_t *swapper(heap_t **root)
 	int holder;
 
 	tmp = *root;
-	while (tmp->n > tmp->parent->n)
+	while (tmp->parent->n < tmp->n)
 	{
 		holder = tmp->parent->n;
 		tmp->parent->n = tmp->n;
@@ -71,7 +71,7 @@ heap_t *swapper(heap_t **root)
  * therefore the binary heap too,don't violate property 1
  * https://www.youtube.com/watch?v=6JxvKfSV9Ns&ab_channel=SithDev
  * when we insert our new_node
- * @parent: parent of new node
+ * @node: pointer to node
  * Return: smallest path as int
 */
 
@@ -79,9 +79,12 @@ int subtree_len(heap_t *node)
 {
 	if (!node->right || !node->left)
 		return (0);
-	if (node->right)
-		return (subtree_len(node->right));
+
 	if (node->left)
-		return (subtree_len(node->left));
+		return (subtree_len(node->left) + 1);
+
+	if (node->right)
+		return (subtree_len(node->right) + 1);
+
 	return (0);
 }
