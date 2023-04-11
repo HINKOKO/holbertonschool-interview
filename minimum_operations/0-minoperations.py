@@ -31,4 +31,3 @@ def minOperations(n):
             i -= 1
         i += 1
     return int(ops)
-
