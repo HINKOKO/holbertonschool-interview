@@ -36,7 +36,7 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 int topple_check(int grid1[3][3])
 {
 	int i = 0, j = 0, status = 0;
-	int tmp[3][3] = {0};
+	int tmp[3][3] = {{0}};
 
 	for (i = 0; i < 3; i++)
 	{
