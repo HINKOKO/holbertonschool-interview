@@ -10,10 +10,12 @@
 
 listint_t *reverser(listint_t *head)
 {
+	listint_t *swappy;
+
 	if (head == NULL || head->next == NULL)
 		return (head);
-	listint_t *swappy = reverser(head->next);
 
+	swappy = reverser(head->next);
 	head->next->next = head;
 	head->next = NULL;
 
@@ -29,6 +31,7 @@ int is_palindrome(listint_t **head)
 {
 	listint_t *slow = *head;
 	listint_t *fast = *head;
+	listint_t *half = NULL, *curr = NULL;
 
 	/* check if empty or only one node */
 	if (*head == NULL || (*head)->next == NULL)
@@ -43,8 +46,8 @@ int is_palindrome(listint_t **head)
 	if (fast)
 		slow = slow->next;
 
-	listint_t *half = reverser(slow);
-	listint_t *curr = *head;
+	half = reverser(slow);
+	curr = *head;
 
 	while (half != NULL)
 	{
