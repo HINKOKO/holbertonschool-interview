@@ -33,7 +33,8 @@ try:
         if counter == 10:
             print("File size: {:d}".format(total_size))
             for k, v in sorted(count_status.items()):
-                print("{:s}: {:d}".format(k, v))
+                if k != 0:
+                    print("{:s}: {:d}".format(k, v))
             counter -= 10
 
 except Exception:
@@ -41,4 +42,5 @@ except Exception:
 finally:
     print("File size: {:d}".format(total_size))
     for k, v in sorted(count_status.items()):
-        print("{:s}: {:d}".format(k, v))
+        if k != 0:
+            print("{:s}: {:d}".format(k, v))
