@@ -2,7 +2,7 @@
 
 /**
  * check_cycle - function to detect if a cycle is present
- * in a linked list
+ * in a linked list, using "floyd and tortoise trick"
  * @list: pointer to head node
  * Return: 0 for no cycle detected
  * 1 for cycle detected!
