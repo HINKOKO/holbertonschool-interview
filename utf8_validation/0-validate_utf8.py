@@ -7,28 +7,41 @@ data represented as a list of integers
 
 
 def validUTF8(data):
-    """
-    Check if the given set of data (list of integers)
-    is valid UTF-8 or not
-    """
-    byte_count = 0
-    for bit in data:
-        # using a mask to perform bitwise & (1 << 7 = 128)
-        # used to check the leftmost bit of each byte
-        mask = 1 << 7
-        if byte_count == 0:
-            while bit & mask:
-                byte_count += 1
-                mask >>= 1
-                if byte_count > 4:
-                    # exceed the max byte for UTF-8
-                    return False
-        elif bit >> 6 != 2:
-            # 2 is '10' valid continuation byte
-            return False
-        if byte_count:
-            byte_count -= 1
-    return byte_count == 0
+    successive_10 = 0
+    for b in data:
+        b = bin(b).replace('0b', '').rjust(8, '0')
+        if successive_10 != 0:
+            successive_10 -= 1
+            if not b.startswith('10'):
+                return False
+        elif b[0] == '1':
+            successive_10 = len(b.split('0')[0]) - 1
+    return True
+
+
+# def validUTF8(data):
+#     """
+#     Check if the given set of data (list of integers)
+#     is valid UTF-8 or not
+#     """
+#     byte_count = 0
+#     for bit in data:
+#         # using a mask to perform bitwise & (1 << 7 = 128)
+#         # used to check the leftmost bit of each byte
+#         mask = 1 << 7
+#         if byte_count == 0:
+#             while bit & mask:
+#                 byte_count += 1
+#                 mask >>= 1
+#                 if byte_count > 4:
+#                     # exceed the max byte for UTF-8
+#                     return False
+#         elif bit >> 6 != 2:
+#             # 2 is '10' valid continuation byte
+#             return False
+#         if byte_count:
+#             byte_count -= 1
+#     return byte_count == 0
 
 
 def validUTF8_extended(data):
