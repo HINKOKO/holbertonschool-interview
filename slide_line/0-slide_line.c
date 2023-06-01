@@ -36,7 +36,7 @@ int slide_line(int *line, size_t size, int direction)
 				i -= direction;
 				break;
 			}
-			else if (line[i] != line[j] && line[j] == 0)
+			else if (line[i] != line[j] && line[i] == 0)
 				break;
 		}
 	}
