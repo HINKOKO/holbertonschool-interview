@@ -23,17 +23,17 @@ int slide_line(int *line, size_t size, int direction)
 														  : j >= 0;
 			 j += direction)
 		{
-			if (line[i] == line[j] && line[i] != 0)
-			{
-				line[i] <<= 1;
-				line[j] = 0;
-				break;
-			}
-			else if (line[i] == 0 && line[j] != 0)
+			if (line[i] == 0 && line[j] != 0)
 			{
 				line[i] = line[j];
 				line[j] = 0;
 				i -= direction;
+				break;
+			}
+			else if (line[i] == line[j] && line[i] != 0)
+			{
+				line[i] <<= 1;
+				line[j] = 0;
 				break;
 			}
 			else if (line[i] != line[j] && line[i] == 0)
