@@ -57,7 +57,7 @@ def is_safe(row, col, board):
 
 if __name__ == "__main__":
     if len(argv) != 2:
-        print("Usage: {} N", argv[0])
+        print("Usage: nqueens N")
     else:
         try:
             N = int(argv[1])
@@ -69,5 +69,5 @@ if __name__ == "__main__":
                 print(sol)
         except ValueError:
             solutions = []
-            print("N must be an integer")
+            print("N must be a number")
             exit(1)
