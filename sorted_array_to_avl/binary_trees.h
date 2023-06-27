@@ -1,8 +1,9 @@
-#ifndef __AVLFROMARR__
-#define __AVLFROMARR__
+#ifndef _BINARY_TREES_H_
+#define _BINARY_TREES_H_
 
-#include <stdlib.h>
+#include <stddef.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
  * struct binary_tree_s - Binary tree node
@@ -12,19 +13,17 @@
  * @left: Pointer to the left child node
  * @right: Pointer to the right child node
  */
-struct binary_tree_s
+typedef struct binary_tree_s
 {
 	int n;
 	struct binary_tree_s *parent;
 	struct binary_tree_s *left;
 	struct binary_tree_s *right;
-};
+} binary_tree_t;
 
 typedef struct binary_tree_s avl_t;
 
+void binary_tree_print(const binary_tree_t *);
 avl_t *sorted_array_to_avl(int *array, size_t size);
-avl_t *look_and_insert(avl_t *daddy, int *array, int left, int right);
-avl_t *new_node(avl_t *daddy, int n);
-void binary_tree_print(const avl_t *tree);
 
-#endif /* __AVLFROMARR__ */
+#endif /* _BINARY_TREES_H_ */
