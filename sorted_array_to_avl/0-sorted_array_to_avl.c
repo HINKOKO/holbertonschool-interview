@@ -7,9 +7,9 @@
  * Return: pointer to newnode
  */
 
-avl_t *new_node(avl_t *daddy, int n)
+binary_tree_t *new_node(binary_tree_t *daddy, int n)
 {
-	avl_t *new = malloc(sizeof(avl_t));
+	binary_tree_t *new = malloc(sizeof(binary_tree_t));
 
 	if (!new)
 		return (NULL);
@@ -32,14 +32,17 @@ avl_t *new_node(avl_t *daddy, int n)
 
 avl_t *look_and_insert(avl_t *daddy, int *array, int left, int right)
 {
-	int mid;
-	avl_t *new;
+	int mid = 0;
+	avl_t *new = NULL;
 
 	/* when its over */
 	if (right < left)
 		return (NULL);
 	mid = (left + right) / 2;
 	new = new_node(daddy, array[mid]);
+	if (!new)
+		return (NULL);
+	new->parent = daddy;
 	new->left = look_and_insert(new, array, left, mid - 1);
 	new->right = look_and_insert(new, array, mid + 1, right);
 	return (new);
@@ -53,5 +56,7 @@ avl_t *look_and_insert(avl_t *daddy, int *array, int left, int right)
 
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
+	if (array == NULL || size == 0)
+		return (NULL);
 	return (look_and_insert(NULL, array, 0, size - 1));
 }
