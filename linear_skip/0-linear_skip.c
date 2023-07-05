@@ -26,14 +26,14 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 				while (list->next)
 					list = list->next;
 			}
-			printf("Value checked at index [%ld] = [%d]\n", list->index, list->n);
+			printf("Value checked at index [%d] = [%d]\n", list->index, list->n);
 		}
 		/* out of while so value was detected */
-		printf("Value found between indexes [%ld] and [%d]\n",
+		printf("Value found between indexes [%d] and [%d]\n",
 			voyager->index, list->index);
 		while (voyager && voyager->index <= list->index)
 		{
-			printf("Value checked at index [%ld] = [%d]\n", voyager->index, voyager->n);
+			printf("Value checked at index [%d] = [%d]\n", voyager->index, voyager->n);
 			if (value == voyager->n)
 				return (voyager);
 			voyager = voyager->next;
