@@ -26,6 +26,8 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 				while (list->next)
 					list = list->next;
 			}
+			if (list != voyager->express)
+				break;
 			printf("Value checked at index [%ld] = [%d]\n", list->index, list->n);
 		}
 		/* out of while so value was detected */
