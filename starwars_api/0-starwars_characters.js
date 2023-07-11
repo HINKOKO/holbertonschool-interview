@@ -4,8 +4,7 @@ const request = require('request');
 const filmNum = process.argv[2];
 
 function printChars (chars, i) {
-  if (i === chars.length) return;
-  else {
+  if (i !== chars.length) {
     request(chars[i], function (err, _res, body) {
       if (err) console.log(err);
       else {
