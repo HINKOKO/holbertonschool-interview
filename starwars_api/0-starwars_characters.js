@@ -1,7 +1,7 @@
 #!/usr/bin/node
 
 const request = require('request');
-const filmNum = process;argv[2];
+const filmNum = process.argv[2];
 
 function printChars (chars, i) {
     if (i == chars.length) return;
