@@ -22,6 +22,8 @@ Hoho ! seems like we get 17 units of fresh acid rain water !
 
 
 def rain(walls):
+    if not len(walls):
+        return 0
     left, right = 0, len(walls) - 1
     lmax, rmax = walls[left], walls[right]
     water = 0
