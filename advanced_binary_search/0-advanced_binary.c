@@ -11,6 +11,7 @@
 int recurs_bin(int *a, size_t size, int value)
 {
 	size_t mid = 0, i;
+	int idx;
 
 	mid = (size - 1) / 2;
 
@@ -24,7 +25,7 @@ int recurs_bin(int *a, size_t size, int value)
 		return (a[0] == value ? 0 : -1);
 	else if (a[mid] >= value)
 		return (recurs_bin(a, mid + 1, value));
-	int idx = recurs_bin(a + mid + 1, size - mid - 1, value);
+	idx = recurs_bin(a + mid + 1, size - mid - 1, value);
 
 	if (idx != -1)
 		return (idx + mid + 1);
