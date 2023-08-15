@@ -1,5 +1,8 @@
 #include "binary_trees.h"
 
+void heapify_down(binary_tree_t *root);
+
+
 int get_size(heap_t *root)
 {
 	if (!root)
