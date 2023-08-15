@@ -1,6 +1,38 @@
 #include "binary_trees.h"
 
-void heapify_down(binary_tree_t *root);
+/**
+ * heapify_down - fix the heap to be Max again
+ * 
+ * 
+*/
+
+void heapify_down(binary_tree_t *root)
+{
+	binary_tree_t *swapped = NULL;
+	int tmp_data = 0;
+
+	while (1)
+	{
+		if (!root->left)
+			break;
+		else if (!root->right)
+			swapped = root->left;
+		else
+		{
+			if (root->left->n >= root->right->n)
+				swapped = root->left;
+			else
+				swapped = root->right;
+		}
+		if (root->n >= swapped->n)
+			break;
+		tmp = root->n;
+		root->n = swapped->n;
+		swapped->n = tmp;
+
+		root = swapped;
+	}
+}
 
 
 int get_size(heap_t *root)
@@ -17,11 +49,11 @@ binary_tree_t *get_last(heap_t *root)
 	binary_tree_t *last = NULL;
 
 	size = get_size(root);
-	/* printf("Size is effectively (number of nodes): %d\t\n", size); */
+	/* printf("Size is effectively (number of nodes): %d\t\n", size); output => 16*/
 	for (nodes = 1; nodes < size; nodes <<= 1)
 		;
 	/* we are one level above the last, divide by 4 to went back to parent-level of last node*/
-	/* printf("Nodes reached the number => %d\n\t YOOO", nodes); */
+	/* printf("Nodes reached the number => %d\n\t YOOO", nodes); output => 32*/
 	nodes >>= 2;
 	for (last = root; nodes > 0; nodes >>= 1)
 	{
