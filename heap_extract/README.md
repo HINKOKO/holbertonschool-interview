@@ -4,6 +4,11 @@ Task is about to write a function that extracts the root node of a Max Binary He
 The root node is getting freed and replaced with the last <i>level-order</i> node of the heap <br>
 Once replaced, we rebuild the heap as necessary.
 
+There's a library in this folder **libheap.a** , to make everything work, compile with:
+```
+gcc -Wall -Wextra -Werror -pedantic -o 0-heap_extract 0-main.c 0-heap_extract.c binary_tree_print.c heapify_down.c -L. -lheap
+```
+
 
 ## **<strikethrough>Why is the life so hard - Why we replace by the last level-order</striketrhough>**
 
