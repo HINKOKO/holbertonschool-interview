@@ -26,9 +26,9 @@ void heapify_down(binary_tree_t *root)
 		}
 		if (root->n >= swapped->n)
 			break;
-		tmp = root->n;
+		tmp_data = root->n;
 		root->n = swapped->n;
-		swapped->n = tmp;
+		swapped->n = tmp_data;
 
 		root = swapped;
 	}
