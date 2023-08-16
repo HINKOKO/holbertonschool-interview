@@ -16,7 +16,6 @@ typedef struct binary_tree_s
 typedef struct binary_tree_s heap_t;
 
 int heap_extract(heap_t **root);
-void heapify_down(binary_tree_t *root);
 
 
 #endif /* __EXTRACTOR__ */
