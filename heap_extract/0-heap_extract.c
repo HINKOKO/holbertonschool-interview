@@ -2,8 +2,7 @@
 
 /**
  * heapify_down - fix the heap to be Max again
- * 
- * 
+ * @root: double pointer to root node
 */
 
 void heapify_down(binary_tree_t **root)
@@ -22,7 +21,7 @@ void heapify_down(binary_tree_t **root)
 			child = node->left->n > node->right->n ?
 				node->left : node->right;
 			/* if true min-heap property is satisfied*/
-		if (node->n > child->n)
+		if (node->n >= child->n)
 			break;
 		tmp = node->n;
 		node->n = child->n;
@@ -31,6 +30,14 @@ void heapify_down(binary_tree_t **root)
 		node = child;
 	}
 }
+
+/**
+ * mappify_the_tree - creates a bit-string map of heap
+ * thanks to retrieval of its "size"
+ * @val: the value to convert
+ * @base: the base used
+ * Return: the map str
+*/
 
 char *mappify_the_tree(int val, int base)
 {
@@ -47,6 +54,11 @@ char *mappify_the_tree(int val, int base)
 	return (ptr);
 }
 
+/**
+ * get_size - computes the size of the max heap
+ * @root: pointer to root node to let's goo
+ * Return: the size or 0
+*/
 
 int get_size(heap_t *root)
 {
