@@ -69,11 +69,6 @@ void mult(char *n1, char *n2)
 	printf("\n");
 }
 
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
 /**
  *
  *
