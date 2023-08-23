@@ -35,7 +35,7 @@ void print_error(void)
 
 void mult(char *n1, char *n2)
 {
-	int len1 = 0, len2 = 0, lens = 0, num1, num2, res = 0, tmp, total, i;
+	int len1 = 0, len2 = 0, lens = 0, num1, num2, res = 0, tmp, i;
 	int *result = NULL;
 
 	len1 = _strlen(n1);
