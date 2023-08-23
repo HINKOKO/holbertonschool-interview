@@ -8,6 +8,7 @@
 
 void print_error(void);
 int _strlen(char *str);
+int _putchar(char c);
 int is_digit(char *a);
 void mult(char *n1, char *n2);
 
