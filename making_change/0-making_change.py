@@ -10,6 +10,9 @@ def makeChange(coins, total):
     we suppose it infinite mwahaha so rich boy
     total: the total to reach dude
     """
+    # hassle
+    if total <= 0:
+        return 0
 
     coins.sort(reverse=True)
     count = 0
