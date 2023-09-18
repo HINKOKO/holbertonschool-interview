@@ -16,13 +16,14 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
-    dp = [0] * (total + 1)
+    dp = [float('inf')] * (total + 1)
+    dp[0] = 0
+    coins.sort()
 
     for i in range(1, total + 1):
-        dp[i] = sys.maxsize
         for c in range(len(coins)):
             if i - coins[c] >= 0:
                 result = dp[i - coins[c]]
                 if result != sys.maxsize:
                     dp[i] = min(dp[i], result + 1)
-    return dp[total] if dp[total] != sys.maxsize else -1
+    return dp[total] if dp[total] != float('inf') else -1
