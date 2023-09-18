@@ -1,8 +1,4 @@
 #!/usr/bin/python3
-
-
-import sys
-
 """
 Module to determine the fewest number of coins needed to meet a given amount
 """
@@ -15,17 +11,17 @@ def makeChange(coins, total):
     total: the total to reach dude
     """
 
-    set = [0] * (total + 1)
+    coins.sort(reverse=True)
+    count = 0
+    i = 0
 
-    for i in range(1, total + 1):
-        set[i] = sys.maxsize
+    while (i < len(coins)):
+        if total == 0:
+            return count
+        if total < coins[i]:
+            i += 1
+        else:
+            total -= coins[i]
+            count += 1
 
-        for c in range(len(coins)):
-            if i - coins[c] >= 0:
-                result = set[i - coins[c]]
-
-                if result != sys.maxsize:
-                    set[i] = min(set[i], result + 1)
-    if set[total] == sys.maxsize:
-        return -1
-    return (set[total])
+    return -1
