@@ -19,7 +19,7 @@ List *add_node_end(List **list, char *str)
 
 	if (*list)
 	{
-		List *last = (*list)->prev;
+		last = (*list)->prev;
 		last->next = new;
 		new->prev = last;
 		new->next = (*list);
