@@ -40,7 +40,6 @@ int main(void)
 	add_node_end(&list, "Full");
 	add_node_end(&list, "Stack");
 	add_node_end(&list, "Engineer");
-	print_list(list);
 
 	printf("Added to the end:\n");
 	print_list(list);

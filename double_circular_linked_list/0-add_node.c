@@ -16,6 +16,8 @@ List *add_node_end(List **list, char *str)
 		go buy some RAM\n"),
 				NULL);
 	new->str = strdup(str);
+	if (!new->str)
+		return (fprintf(stderr, "Duplication of your string failed, it must be too long ", NULL));
 
 	if (*list)
 	{
@@ -48,6 +50,8 @@ List *add_node_begin(List **list, char *str)
 		go buy some RAM\n"),
 				NULL);
 	new->str = strdup(str);
+	if (!new->str)
+		return (fprintf(stderr, "Duplication of your string failed, it must be too long ", NULL));
 	if (!(*list))
 	{
 		*list = new;
