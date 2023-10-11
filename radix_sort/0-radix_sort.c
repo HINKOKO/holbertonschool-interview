@@ -19,7 +19,7 @@ void radix_sort(int *array, size_t size)
 	if (!array || size < 2)
 		return;
 
-	semi = malloc(size * sizeof(int));
+	semi = malloc(size * sizeof(*semi));
 	if (!semi)
 		return;
 
