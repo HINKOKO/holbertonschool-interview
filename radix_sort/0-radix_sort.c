@@ -13,7 +13,7 @@ void radix_sort(int *array, size_t size)
 {
 	size_t i = 0;
 	int max = INT_MIN;
-	int semi[size];
+	int semi[size], bucket[RADIX] = {0};
 	int SD = 1;
 
 	if (!array || size < 2)
@@ -25,8 +25,6 @@ void radix_sort(int *array, size_t size)
 	while ((max / SD) > 0)
 	{
 		print_array(array, size);
-
-		int bucket[RADIX] = {0};
 
 		/* count the number of 'keys' digits that'll go in each bucket */
 		for (i = 0; i < size; i++)
