@@ -13,10 +13,14 @@ void radix_sort(int *array, size_t size)
 {
 	size_t i = 0;
 	int max = INT_MIN;
-	int semi[size], bucket[RADIX] = {0};
+	int bucket[RADIX] = {0}, *semi;
 	int SD = 1;
 
 	if (!array || size < 2)
+		return;
+
+	semi = malloc(size * sizeof(int));
+	if (!semi)
 		return;
 
 	for (i = 0; i < size; i++)
@@ -45,4 +49,5 @@ void radix_sort(int *array, size_t size)
 		/* Let's go to next significant digit SD */
 		SD *= 10;
 	}
+	free(semi);
 }
