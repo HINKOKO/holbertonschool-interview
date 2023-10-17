@@ -24,4 +24,7 @@ def island_perimeter(grid):
                 if y < len(grid) - 1 and grid[y + 1][x] == 1:
                     neighbor += 1
     # heck imagine only '1' cell found, bim times 4 - 2 * 0
+    # Moreover => Each land cell '1' contributes to -> 4 units of perimeter
+    # BUT => if it has adjacent land, it shares 2 units with that neighbor
+    # hence => 4 * island - 2 * neighbor to adjust the shared perimeters cells
     return island * 4 - 2 * neighbor
