@@ -4,6 +4,8 @@
 
 #include "binary_trees.h"
 
+#define MAX(a, b) ((a) >= (b) ? (a) : (b))
+
 /**
  * height - calculate height of left and right subtree
  * @tree: pointer to compute the left & right from
@@ -12,16 +14,10 @@
 
 size_t height(const binary_tree_t *tree)
 {
-	size_t l = 0, r = 0;
-
 	if (!tree)
 		return (0);
-	if (tree->left)
-		l = height(tree->left) + 1;
-	if (tree->right)
-		r = height(tree->right) + 1;
 
-	return (l > r ? l : r);
+	return (1 + MAX(height(tree->left), height(tree->right)));
 }
 
 /**
