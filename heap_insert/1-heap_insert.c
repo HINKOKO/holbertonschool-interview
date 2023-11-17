@@ -1,90 +1,67 @@
 #include "binary_trees.h"
+#include <unistd.h>
 
+#define COLOR "\033[32m"
+#define R "\033[0m"
 /**
- * heap_insert - insert a value into a Max Binary Heap
- * @root: double pointer to root node
- * ==> we're going to modify it don't loose track!
- * @value: value to insert in the new node
- * Return: pointer to freshly inserted node, NULL on failure
- * Watch 'correct steps' in the readme for explanation about that code
-*/
-
+ * heap_insert - inserts new value into MAX HEAP
+ * @root: address of ptr to root node
+ * @value: the integer value of the node
+ * Return: ptr to new node or NULL on error.
+ */
 heap_t *heap_insert(heap_t **root, int value)
 {
-	heap_t *new;
+	ssize_t n = heap_size(*root) + 1;
+	int bit = 0;
+	heap_t *node = *root, *new_node;
 
-	new = *root;
-	if (!new)
+	new_node = binary_tree_node(node, value);
+	if (!new_node)
+		return (NULL);
+	if (!*root)
+		return (*root = new_node);
+	for (; 1 << (bit + 1) <= n; bit++)
+		;
+	for (bit--; bit > 0; bit--)
 	{
-		*root = binary_tree_node(new, value);
-		return (*root);
+		if (n & (1 << bit))
+			node = node->right;
+		else
+			node = node->left;
 	}
-	if (!new->left)
-	{
-		new->left = binary_tree_node(new, value);
-		return (swapper(&new->left));
-	}
-	if (!new->right)
-	{
-		new->right = binary_tree_node(new, value);
-		return (swapper(&new->right));
-	}
-	if (subtree_len(new->left) <= subtree_len(new->right))
-		return (heap_insert(&new->left, value));
+	if (n & 1)
+		node->right = new_node;
 	else
-		return (heap_insert(&new->right, value));
+		node->left = new_node;
+	new_node->parent = node;
+	return (heapify(new_node));
 }
 
-
 /**
- * swapper - utility function to perform swapping ops
- * to satisfy max-heap property
- * @root: double pointer to root of heap
- * Return: pointer to new node swapped
-*/
-
-heap_t *swapper(heap_t **root)
+ * get_heap_size - gets number of nodes in heap
+ * @root: pointer to root node
+ * Return: number of nodes
+ */
+size_t heap_size(heap_t *root)
 {
-	heap_t *tmp;
-	int holder;
-
-	tmp = *root;
-	while (tmp->parent->n < tmp->n)
-	{
-		holder = tmp->parent->n;
-		tmp->parent->n = tmp->n;
-		tmp->n = holder;
-		tmp = tmp->parent;
-		if (!tmp->parent)
-			break;
-	}
-	return (tmp);
-}
-
-
-
-/**
- * subtree_len - check and returns smallest subtree
- * why? => binary heap is allways complete binary tree
- * complete BT always filled (from top to bottom), and left to right.
- * checking smallest path => insert in position to keep complete the BT
- * therefore the binary heap too,don't violate property 1
- * https://www.youtube.com/watch?v=6JxvKfSV9Ns&ab_channel=SithDev
- * when we insert our new_node
- * @node: pointer to node
- * Return: smallest path as int
-*/
-
-int subtree_len(heap_t *node)
-{
-	if (!node->right || !node->left)
+	if (!root)
 		return (0);
+	return (1 + heap_size(root->left) + heap_size(root->right));
+}
 
-	if (node->left)
-		return (subtree_len(node->left) + 1);
-
-	if (node->right)
-		return (subtree_len(node->right) + 1);
-
-	return (0);
+/**
+ * heapify - ensures Max Heap property
+ * @node: node to start heapification
+ * Return: pointer to starting node
+ */
+heap_t *heapify(heap_t *node)
+{
+	while (node && node->parent && node->n > node->parent->n)
+	{
+		node->parent->n -= node->n;
+		node->n = node->parent->n + node->n;
+		node->parent->n = node->n - node->parent->n;
+		node = node->parent;
+	}
+	return (node);
 }

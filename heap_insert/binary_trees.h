@@ -3,6 +3,8 @@
 
 #include <stddef.h>
 #include <stdlib.h>
+/* for debug/understanding printf */
+#include <stdio.h>
 
 /**
  * struct binary_tree_s - Binary tree node
@@ -27,12 +29,8 @@ void binary_tree_print(const binary_tree_t *);
 /* creation of binary tree */
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
 /* heap insertion */
+heap_t *heapify(heap_t *node);
 heap_t *heap_insert(heap_t **root, int value);
-heap_t *swapper(heap_t **root);
-int subtree_len(heap_t *parent);
-
-
-
-
+size_t heap_size(heap_t *tree);
 
 #endif /* _BINARY_TREES_H_ */
