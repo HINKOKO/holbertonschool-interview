@@ -38,7 +38,7 @@ heap_t *heap_insert(heap_t **root, int value)
 }
 
 /**
- * get_heap_size - gets number of nodes in heap
+ * heap_size - gets number of nodes in heap
  * @root: pointer to root node
  * Return: number of nodes
  */
