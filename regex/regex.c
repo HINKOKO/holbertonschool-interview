@@ -17,9 +17,10 @@ int regex_match(char const *str, char const *pattern)
 
 	if (*str != '\0' && *pattern == '\0')
 		return (0);
-	
+
 	/* If we find a 'wildcard jocker character' */
-	if (*(pattern + 1) == '*') {
+	if (*(pattern + 1) == '*')
+	{
 		while ((*str != '\0' && *pattern == '.') || (*str == *pattern))
 		{
 			if (regex_match(str++, pattern + 2))
@@ -30,7 +31,6 @@ int regex_match(char const *str, char const *pattern)
 
 	if (*str == '\0' || (*pattern != '.' && *str != *pattern))
 		return (0);
-	
+
 	return (regex_match(str + 1, pattern + 1));
-	
 }
